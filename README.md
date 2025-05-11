@@ -185,13 +185,166 @@ Add:
 
 ---
 
-## 🔒 Next Steps / Optional Add-ons
-
-* Configure CloudWatch for deeper monitoring
-* Replace `AmazonS3FullAccess` with a principle-of-least-privilege policy
-* Encrypt backup data before upload
-* Introduce log rotation for Nginx and backup logs
+Certainly, here's a rewritten and more professional version of your GitHub Pages (Gitpage) documentation entry, adapted to match the tone, structure, and style suitable for technical portfolios or case study documentation:
 
 ---
 
-Would you like a matching GitHub Actions badge or diagram to visualize this setup on your GitPage?
+# Microsoft 365 + SaaS Infrastructure Lab
+
+*Enterprise Simulation for User & Access Management, Communication, and Document Collaboration*
+
+## 🎯 Objective
+
+The purpose of this lab is to simulate a basic corporate IT environment using **Microsoft 365 as a SaaS platform**. The focus areas include:
+
+* Email communication
+* Document storage and collaboration
+* User lifecycle and role management
+* Multi-Factor Authentication (MFA) and security policies via Azure Active Directory (Entra)
+
+This project demonstrates proficiency with **Microsoft 365 cloud services**, **Azure AD integration**, and **modern security practices**—essential skills for enterprise or SMB roles in system administration, cloud IT, or IT support.
+
+---
+
+## 📝 Status (as of 2025-05-07)
+
+The **Microsoft 365 Developer Program account** was successfully created. However, **sandbox provisioning is currently on hold** due to Microsoft's eligibility review:
+
+> *"You don’t currently qualify for a Microsoft 365 Developer Program sandbox subscription."*
+
+As sandbox access is required for full implementation, **this portion of the lab is currently paused**. Once access is granted, development will resume accordingly.
+
+Note: This project was requested by **Eleva**, with a specific requirement to use Microsoft 365 and AWS (no self-hosted alternatives).
+
+---
+
+## ✅ Prepared & Documented Steps
+
+### 1. 🧩 Microsoft 365 Developer Environment Setup
+
+**Platform:** [Microsoft 365 Developer Program (Free)](https://developer.microsoft.com/en-us/microsoft-365/dev-program)
+
+**Steps Taken:**
+
+* Registered for the M365 Developer Program
+* Attempted to provision an *Instant Sandbox* environment:
+
+  * **Region:** EU
+  * **Domain:** `daniele365.onmicrosoft.com`
+  * **Admin User:** `admin@daniele365.onmicrosoft.com`
+
+> 🔐 *Password for the global admin was securely saved.*
+
+If provisioned, the following portals would be accessible:
+
+| Tool                | URL                                                            |
+| ------------------- | -------------------------------------------------------------- |
+| Microsoft 365 Admin | [https://admin.microsoft.com](https://admin.microsoft.com)     |
+| Azure AD (Entra)    | [https://entra.microsoft.com](https://entra.microsoft.com)     |
+| Outlook Web Access  | [https://outlook.office365.com](https://outlook.office365.com) |
+
+**Documentation File:** `m365-setup-notes.md`
+
+```md
+# Microsoft 365 Dev Tenant Setup
+- Domain: daniele365.onmicrosoft.com
+- Admin User: admin@daniele365.onmicrosoft.com
+- Region: EU
+- Creation Date: 2025-05-07
+```
+
+---
+
+### 2. 👥 User Creation (Manual via M365 Admin Portal)
+
+**Location:** `Users > Active Users` in the M365 Admin Center.
+
+| Name  | Role                 | Email                                                                       | Password        |
+| ----- | -------------------- | --------------------------------------------------------------------------- | --------------- |
+| Admin | Global Administrator | [admin@daniele365.onmicrosoft.com](mailto:admin@daniele365.onmicrosoft.com) | \[Saved]        |
+| User  | Standard User        | [user@daniele365.onmicrosoft.com](mailto:user@daniele365.onmicrosoft.com)   | `User@2025`     |
+| Guest | External B2B Guest   | [guest@gmail.com](mailto:guest@gmail.com)                                   | Invitation only |
+
+**Access Permissions:**
+
+* **Admin:** Full global admin rights
+* **User:** Licensed M365 user
+* **Guest:** External B2B guest; no license; link-based access only
+
+*Update in notes file:*
+
+```md
+## Users
+- Admin (Global Admin)
+- User (Standard)
+- Guest (External)
+```
+
+---
+
+### 3. 📧 Email Verification (Outlook Web)
+
+**Login:** [https://outlook.office365.com](https://outlook.office365.com) with `user@daniele365.onmicrosoft.com`
+
+**Checklist:**
+
+* [ ] Send a test email to `admin@...` and confirm delivery
+* [ ] Test calendar scheduling
+* [ ] Attach and download `.docx` documents to validate file exchange
+
+---
+
+### 4. 🗂️ SharePoint Team Site + Guest Access
+
+**Navigation:** M365 Admin Portal → **Apps > SharePoint > Open**
+
+**Site Configuration:**
+
+* **Type:** Team Site
+* **Name:** IT-Docs
+* **Members:**
+
+  * `user@daniele365.onmicrosoft.com`
+  * `guest@gmail.com` (invited via email)
+
+**Functionality Tests:**
+
+* [ ] Upload `infra-plan.docx`
+* [ ] Ensure internal user has view/edit access
+* [ ] Share file with guest — confirm restricted, link-based access
+
+---
+
+### 5. 🔐 Multi-Factor Authentication & Baseline Security
+
+**Tool:** [Microsoft Entra](https://entra.microsoft.com)
+
+**Actions:**
+
+* Enable **MFA** for `user@daniele365.onmicrosoft.com`
+
+  * Test with **Microsoft Authenticator App**
+* Activate **Security Defaults**
+
+  * Navigate to *Entra → Properties → Manage Security Defaults*
+  * Enables:
+
+    * Mandatory MFA for all users
+    * Legacy auth protocol deprecation
+    * Baseline conditional access enforcement
+
+---
+
+### 6. 🛠️ Monitoring & Secure Access (AWS + Netdata)
+
+**Monitoring Tool:** [Netdata](https://www.netdata.cloud)
+
+**Installation Script:**
+
+```bash
+bash <(curl -L -Ss https://my-netdata.io/kickstart.sh)
+```
+
+**Access Control:**
+
+* AWS Security Group configured to expose port **19999** (*Netdata dashboard*) only to the developer's public IP address.
