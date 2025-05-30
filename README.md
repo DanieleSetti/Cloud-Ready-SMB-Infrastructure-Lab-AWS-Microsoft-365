@@ -202,18 +202,6 @@ This project demonstrates proficiency with **Microsoft 365 cloud services**, **A
 
 ---
 
-## 📝 Status (as of 2025-05-07)
-
-The **Microsoft 365 Developer Program account** was successfully created. However, **sandbox provisioning is currently on hold** due to Microsoft's eligibility review:
-
-> *"You don’t currently qualify for a Microsoft 365 Developer Program sandbox subscription."*
-
-As sandbox access is required for full implementation, **this portion of the lab is currently paused**. Once access is granted, development will resume accordingly.
-
-Note: This project was requested by **Eleva**, with a specific requirement to use Microsoft 365 and AWS (no self-hosted alternatives).
-
----
-
 ## ✅ Prepared & Documented Steps
 
 ### 1. 🧩 Microsoft 365 Developer Environment Setup
