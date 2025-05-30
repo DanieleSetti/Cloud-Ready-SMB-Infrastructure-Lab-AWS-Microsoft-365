@@ -185,10 +185,6 @@ Add:
 
 ---
 
-Certainly, here's a rewritten and more professional version of your GitHub Pages (Gitpage) documentation entry, adapted to match the tone, structure, and style suitable for technical portfolios or case study documentation:
-
----
-
 # Microsoft 365 + SaaS Infrastructure Lab
 
 *Enterprise Simulation for User & Access Management, Communication, and Document Collaboration*
